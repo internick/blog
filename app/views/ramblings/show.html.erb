@@ -1,0 +1,27 @@
+<% @page_title = @rambling.title || "Entry not found!" %>
+
+<% if @rambling %>
+	<!-- A complete blog entry -->
+	<div class="blog">
+		<div class="blogl">
+			<%= image_tag("webdings/"+@rambling.icon.to_s.rjust(3, "0")+".gif", :size=>'95x75', :alt=>"WebDing!") %><br>
+			Posted at<br><%= @rambling.created_at.to_s(:short_time) %><br>by Nick<p><a href="javascript:Comments(<%= @rambling.id %>);">Comments (<%= @rambling.comments.count %>)</a><p>
+			<%= link_to("Permalink", {:action=>"show", :id=>@rambling.id}) %><p>
+			<%= image_tag("diamonds.gif", :size=>'41x12', :alt=>"*") %>
+		</div>
+		<div class="blogr">
+			<div class="date"><%= image_tag("left.gif") %><%= @rambling.created_at.to_s(:simple_date) %><%= image_tag("right.gif") %></div>
+			<div class="btitle"><%= @rambling.title.upcase %></div>
+			<div class="blogbody">
+			<%= raw(@rambling.body_text) %>
+			</div>
+			<!--<cfif IsDefined("URL.admin526")><div class="admincontrols">Administrative Options: <a href="javascript:EditEntry(#Entries.rID#);">Edit Entry</a> | <a href="javascript:ConfirmDel(#rID#);">Delete Entry</a></div></cfif>-->
+		</div>
+	</div>
+<% else %>
+	<div align="center">Entry <%= params[:id] %> not found. <%= link_to("Back to home", {:action=>index}) %></div>
+<% end %>
+
+<div class="archivelink">
+	<%= link_to(image_tag("archivelink.gif", :size=>'150x41', :alt=>"To The Archives..."), {:action=>"archive"}) %>
+</div>

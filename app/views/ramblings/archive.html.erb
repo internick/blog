@@ -1,0 +1,31 @@
+<% @page_title = "Archive" %>
+
+<div class="blogl">
+	<%= image_tag("webdings/172.gif", :size=>'95x75', :alt=>"Archive") %><br/>
+	<div class="archiveheading">The Archives</div>
+	<div class="archiveyearsummarylinks">
+	<% @ramblings_by_year.each do |y| %>
+		<%= link_to(y[0], "#a#{y[0]}") %> (<%= y[1] %>)<br/>
+	<% end %>
+	</div>
+</div>
+
+<% if @ramblings.count > 0 %>
+<% current_year = 0 %>
+<div class="blogr" style="text-align:left;">
+
+	<% @ramblings.each do |r| %>
+	<!-- Articles by Date -->
+
+		<% if current_year != r.created_at.year %>
+		    <% current_year = r.created_at.year %>
+		    <div class="archiveyear"><a name="a<%= current_year %>"></a><%= current_year %></div>
+		<% end %>
+		<div class="archivedate"><%= r.created_at.to_s(:simple_date) %></div>
+		<div class="archivebody"><%= link_to(r.title, {:action=>"show", :id=>r.id}) %></div>
+		
+	<% end %>
+	</div>
+<% else %>
+	<div align="center">No Entries Found.</div>
+<% end %>

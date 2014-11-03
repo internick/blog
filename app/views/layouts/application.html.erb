@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nick's Ramblings - <%= @page_title || "Welcome" %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<center>
+<div id="box1">
+	<div id="titlebox"><a href="/"><%= link_to(image_tag("title.gif", :width=>306, :height=>65, :style=>"border=0", :alt=>"My Ramblings"), "/") %></a><br><%= image_tag("taglines/tagline" + rand(1..26).to_s + ".gif", :width=>385, :height=>23, :alt=>"Tagline") %></div>
+	<div id="greenpic"><%= image_tag("cow.gif", :width=>148, :height=>104, :alt=>"Mooo.") %></div>
+</div>
+<div id="checks"><%= image_tag("checks.gif", :width=>548, :height=>13, :alt=>"--") %></div>
+<div id="box2">
+
+<!-- Before yield -->
+<%= yield %>
+<!-- After yield -->
+<br clear="both"/>
+</div>
+<div id="checks2"><%= image_tag("checks.gif", :width=>548, :height=>13, :alt=>"--") %></div>
+</center>
+
+</body>
+</html>
