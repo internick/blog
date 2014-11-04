@@ -4,8 +4,8 @@ lock '3.2.1'
 set :application, 'blog'
 set :repo_url, 'git@github.com:internick/blog.git'
 set :rbenv_ruby, '2.1.3'
-set :rbenv_type, :system
-set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+#set :rbenv_type, :system
+#set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 
 # Default branch is :master
@@ -45,7 +45,7 @@ set :tests, []
 namespace :deploy do
   #before :deploy, "deploy:check_revision"
   #before :deploy, "deploy:run_tests"
-  after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
+  #after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
   after :finishing, 'deploy:cleanup'
   after 'deploy:publishing', 'deploy:restart'
 
