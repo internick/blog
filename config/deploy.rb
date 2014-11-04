@@ -4,6 +4,9 @@ lock '3.2.1'
 set :application, 'blog'
 set :repo_url, 'git@github.com:internick/blog.git'
 set :rbenv_ruby, '2.1.3'
+set :rbenv_type, :system
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
@@ -25,7 +28,7 @@ set :log_level, :debug
 set :pty, true
 
 # Default value for :linked_files is []
-# set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml}
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system }
@@ -36,30 +39,19 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 # Default value for keep_releases is 5
 set :keep_releases, 5
 
+# Testing if we wanted it
+set :tests, []
+
 namespace :deploy do
-  task :start do ; end
-  task :stop do ; end
-
-  desc "Symlink shared config files"
-  task :symlink_config_files do
-    run "#{ sudo } ln -s #{ deploy_to }/shared/config/database.yml #{ current_path }/config/database.yml"
-  end
-
-  # NOTE: I don't use this anymore, but this is how I used to do it.
-  #desc "Precompile assets after deploy"
-  #task :precompile_assets do
-  #  run <<-CMD
-  #    cd #{ current_path } &&
-  #    #{ sudo } bundle exec rake assets:precompile RAILS_ENV=#{ rails_env }
-  #  CMD
-  #end
+  #before :deploy, "deploy:check_revision"
+  #before :deploy, "deploy:run_tests"
+  after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
+  after :finishing, 'deploy:cleanup'
+  after 'deploy:publishing', 'deploy:restart'
 
   desc "Restart applicaiton"
   task :restart do
     run "#{ try_sudo } touch #{ File.join(current_path, 'tmp', 'restart.txt') }"
   end
-end
 
-after "updating", "deploy:symlink_config_files"
-after "deploy", "deploy:restart"
-after "deploy", "deploy:cleanup"
+end

@@ -10,6 +10,8 @@ role :app, %w{internick@104.200.16.18}
 role :web, %w{internick@104.200.16.18}
 role :db,  %w{internick@104.200.16.18}
 
+set :rails_env, :production
+
 
 # Extended Server Syntax
 # ======================

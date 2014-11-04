@@ -106,8 +106,9 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano
-  capistrano-rails (~> 1.1)
-  capistrano-rbenv
+  capistrano-bundler
+  capistrano-rails (~> 1.1.0)
+  capistrano-rbenv (~> 2.0)
   jbuilder (~> 2.0)
   jquery-rails
   mysql2
