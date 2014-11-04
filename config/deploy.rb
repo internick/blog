@@ -49,9 +49,9 @@ namespace :deploy do
   after :finishing, 'deploy:cleanup'
   after 'deploy:publishing', 'deploy:restart'
 
-  desc "Restart applicaiton"
-  task :restart do
-    run "#{ try_sudo } touch #{ File.join(current_path, 'tmp', 'restart.txt') }"
-  end
+  #desc "Restart applicaiton"
+  #task :restart do
+  #  run "#{ try_sudo } touch #{ File.join(current_path, 'tmp', 'restart.txt') }"
+  #end
 
 end
