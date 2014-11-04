@@ -112,4 +112,5 @@ DEPENDENCIES
   jquery-rails
   mysql2
   rails (= 4.1.6)
+  rake (~> 10.3.2)
   spring
