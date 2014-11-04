@@ -113,6 +113,7 @@ DEPENDENCIES
   capistrano-bundler
   capistrano-rails (~> 1.1.0)
   capistrano-rbenv (~> 2.0)
+  execjs
   jbuilder (~> 2.0)
   jquery-rails
   mysql2
