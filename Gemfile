@@ -33,8 +33,11 @@ gem 'spring',        group: :development
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-gem 'capistrano', '~> 3.1'
-gem 'capistrano-rails', '~> 1.1', group: :development
+group :development do
+	gem 'capistrano'
+	gem 'capistrano-rails', '~> 1.1'
+	gem 'capistrano-rbenv'
+end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
