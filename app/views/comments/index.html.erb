@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Comments for @rambling.title</title>
+	<style>
+
+	body {
+		background-color:#6C6;
+		margin: 10px 10px 20px 10px;
+		color:#033;
+	}
+		
+	#heading {
+		border-bottom: 1px #033 solid;
+		padding-bottom:4px;		
+		font-family:trebuchet ms, verdana, arial;
+		font-size:24px;
+		font-weight:bold;
+	}
+	
+	#heading2 {
+		border-bottom: 1px #033 solid;
+		padding-bottom:4px;	
+		font-family:trebuchet ms, verdana, arial;
+		font-size:16px;
+		font-weight:bold;
+	}
+
+	#formbox {
+		padding: 0px;
+	}
+
+	.fieldtitle {
+		font-family:trebuchet ms, verdana, arial;
+		font-size:13px;
+		font-weight:bold;
+		color:#033;
+		padding-top:8px;
+	}
+	
+	.comment {
+		color:#003333;
+		font-family:bookman old style, book antiqua, verdana, arial;
+		font-size:12px;
+		line-height:16px;
+		padding: 15px 0px 15px 0px;
+	}
+	
+	.author {
+		padding-top:8px;
+		color:#003333;
+		font-family:bookman old style, book antiqua, verdana, arial;
+		font-size:12px;
+		font-weight:bold;
+	}
+		
+	.divide {
+		text-align:center;
+		padding: 0px;
+	}
+	</style>
+</head>
+
+<body>
+	<div id="heading">Comments</div>
+	<% if @comments.count > 0 %>
+		<% @comments.each do |c| %>
+			<div class="comment">
+				<%= raw(c.content) %>
+				<div class="author">
+					&raquo; <%= c.author %> at <%= c.created_at.strftime("%b %e, %Y %l:%M%p") %>
+				</div>
+			</div>
+			<div class="divide"><%= image_tag("divide.gif", :size=>'25x20') %></div>
+		<% end %>
+
+	<% else %>
+		<div class="comment">No comments have been posted.</div>
+	<% end %>
+</body>
+</html>

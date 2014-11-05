@@ -1,7 +1,7 @@
 
 // Comment Function
 function Comments(ID) {
-	window.open('comments.cfm?rID=' + ID, 'comments', 'width=350,height=400,scrollbars=yes,status=yes');
+	window.open('/comments?id=' + ID, 'comments', 'width=350,height=400,scrollbars=yes,status=yes');
 }
 
 // Admin Functions
