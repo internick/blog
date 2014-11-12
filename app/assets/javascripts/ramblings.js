@@ -20,9 +20,9 @@ function ConfirmDel(delID) {
 }
 
 function PicView(ID) {
-	window.open('pic-view.cfm?pID=' + ID, 'viewer', 'width=800,height=600,scrollbars=yes,status=yes');
+	window.open('/pictures/view?p=' + ID, 'viewer', 'width=800,height=680,scrollbars=yes,status=yes');
 }
 
 function SlideShow(piclist) {
-	window.open('pic-view.cfm?ss=' + piclist + '&pos=1', 'viewer', 'width=800,height=600,scrollbars=yes,status=yes');
+	window.open('/pictures/view?p=' + piclist + '&pos=0', 'viewer', 'width=800,height=680,scrollbars=yes,status=yes');
 }
